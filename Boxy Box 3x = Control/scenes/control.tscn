@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/Button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/botonlado.png" type="Texture" id=2]
+[ext_resource path="res://assets/botonarriba.png" type="Texture" id=3]
+[ext_resource path="res://assets/botonabajo.png" type="Texture" id=4]
+[ext_resource path="res://scripts/control.gd" type="Script" id=5]
+[ext_resource path="res://assets/dondo2.png" type="Texture" id=6]
+[ext_resource path="res://assets/fondo.png" type="Texture" id=7]
+
+[node name="control" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="fondo" type="Sprite" parent="."]
+position = Vector2( 45.367, -0.786711 )
+scale = Vector2( 4.86853, 2.90209 )
+texture = ExtResource( 6 )
+
+[node name="borde" type="Sprite" parent="fondo"]
+position = Vector2( -0.017956, 0.783136 )
+scale = Vector2( 1.0303, 0.996235 )
+texture = ExtResource( 7 )
+
+[node name="abajo" parent="." instance=ExtResource( 1 )]
+margin_left = 0.52742
+margin_top = 9.21657
+margin_right = 30.5274
+margin_bottom = 39.2166
+accion = "abajo"
+
+[node name="Sprite" parent="abajo" index="0"]
+texture = ExtResource( 4 )
+
+[node name="derecha" parent="." instance=ExtResource( 1 )]
+margin_left = -24.0
+margin_top = -12.0
+margin_right = 6.0
+margin_bottom = 18.0
+accion = "derecha"
+
+[node name="Sprite" parent="derecha" index="0"]
+texture = ExtResource( 2 )
+flip_h = true
+
+[node name="izquierda" parent="." instance=ExtResource( 1 )]
+margin_left = 28.0
+margin_top = -12.0
+margin_right = 58.0
+margin_bottom = 18.0
+accion = "izquierda"
+
+[node name="Sprite" parent="izquierda" index="0"]
+texture = ExtResource( 2 )
+
+[node name="arriba" parent="." instance=ExtResource( 1 )]
+margin_left = 0.599564
+margin_top = -32.5996
+margin_right = 30.5996
+margin_bottom = -2.59956
+accion = "arriba"
+
+[node name="Sprite" parent="arriba" index="0"]
+texture = ExtResource( 3 )
+
+[node name="rojo" parent="." instance=ExtResource( 1 )]
+margin_left = 84.0
+margin_top = -12.0
+margin_right = 114.0
+margin_bottom = 18.0
+accion = "rojo"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 45.338, 1.57137 )
+current = true
+zoom = Vector2( 0.15, 0.15 )
+
+[editable path="abajo"]
+
+[editable path="derecha"]
+
+[editable path="izquierda"]
+
+[editable path="arriba"]
