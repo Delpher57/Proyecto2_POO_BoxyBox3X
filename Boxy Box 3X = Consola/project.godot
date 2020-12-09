@@ -15,14 +15,12 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Boxy Box 3X = Pantalla"
-run/main_scene="res://scenes/lobby/lobby.tscn"
+config/name="Boxy Box 3X = Consola"
+run/main_scene="res://scenes/lobby.tscn"
 config/icon="res://icon.png"
 
 [display]
 
-window/size/width=815
-window/size/height=815
 window/size/resizable=false
 
 [rendering]

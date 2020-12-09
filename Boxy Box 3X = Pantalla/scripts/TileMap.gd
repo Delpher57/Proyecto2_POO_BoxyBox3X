@@ -32,9 +32,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_down"):
-		moverder(x,y,pacm)
-		x+=1
 		
 	pass
 
@@ -78,5 +75,8 @@ func moverder(x1,y1,matriz):
 	dibujar5x5(temporal5x5,x1,y1)
 	guardar5x5(x1+1,y1)
 	dibujar5x5(matriz,x1+1,y1)
-	
 	pass
+
+func pruebamov(accion):
+	moverder(x,y,pacm)
+	x+=1
