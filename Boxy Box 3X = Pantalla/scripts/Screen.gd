@@ -16,6 +16,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-puppet func recibiendo_accion_presion(accion):
+remote func recibiendo_accion_presion(accion):
 	print("recibido")
 	get_node("TileMap").pruebamov(accion)
