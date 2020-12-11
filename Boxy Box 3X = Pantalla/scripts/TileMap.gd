@@ -5,15 +5,13 @@ extends TileMap
 var x = 25
 var y = 25
 
+var hay_fondo = false
+var fondo
+
+
 #prueba para dibujar a pacman
 #los sub arrays significan: 1 si se pinta, 0 si no, y luego el color
-var pacm = [
-			[0,0],[1,16],[1,16],[1,16],[0,0],
-			[1,16],[1,16],[1,16],[1,16],[1,16],
-			[1,16],[1,16],[1,16],[0,0],[0,0],
-			[1,16],[1,16],[1,16],[1,16],[1,16],
-			[0,0],[1,16],[1,16],[1,16],[0,0]
-			]
+var personaje
 
 # la usamos para guardar el estado de la pantalla
 var temporal5x5 = [
@@ -27,6 +25,7 @@ var temporal5x5 = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	guardar5x5(25,25)
+	limpiar_pantalla()
 	pass # Replace with function body.
 
 
@@ -53,6 +52,7 @@ func dibujar5x5 (matriz,x1,y1):
 		tempx = x1
 
 
+#guardamos el estado de un area de 5x5
 func guardar5x5 (x1,y1):
 	print ("guardando area")
 	
@@ -68,12 +68,29 @@ func guardar5x5 (x1,y1):
 		tempy += 1
 		tempx = x1
 
-func moverder(x1,y1,matriz):
-	dibujar5x5(temporal5x5,x1,y1)
-	guardar5x5(x1+1,y1)
-	dibujar5x5(matriz,x1+1,y1)
+
+
+func limpiar_pantalla():
+	for i in 51:
+		for j in 51:
+			set_cell(i,j,4,false,false)
+
+#imprimimos una matriz de 51x51 en toda la pantalla
+func imprimir_completo():
+	
+	for i in 51:
+		for j in 51:
+			set_cell(i,j,fondo[i][j],false,false)
+			
+
+#movemos un sprite de 5x5
+func mover(x1,y1,matriz):
+	if hay_fondo == true:
+		imprimir_completo()
+	else:
+		limpiar_pantalla()
+	dibujar5x5(matriz,x1,y1)
 	pass
 
-func pruebamov(accion):
-	moverder(x,y,pacm)
-	x+=1
+func send_color(x1,y1):
+	return get_cell(x1,y1)

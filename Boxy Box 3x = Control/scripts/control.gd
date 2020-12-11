@@ -8,15 +8,7 @@ var socket
 
 func _init():
   socket = PacketPeerUDP.new()
-  socket.set_dest_address("127.0.0.1",5252)
-
-
-
-
-
-func _on_Pacman_pressed():
-	socket.put_packet("pacman".to_ascii())
-	print ("Empezando pacman...")
+  socket.set_dest_address("127.0.0.1",4242)
 
 	
 var botones = []
@@ -48,4 +40,5 @@ func boton_presionado(accion):
 
 func boton_soltado(accion):
 	print("Se ha soltado el boton > ",accion)
+	socket.put_packet("soltado".to_ascii())
 	pass

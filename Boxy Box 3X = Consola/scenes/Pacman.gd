@@ -7,6 +7,7 @@ export var direccion = "res://PacmanConsola.tscn"
 var click
 
 func _ready():
+	print ("consola")
 	_init()
 
 
@@ -21,7 +22,6 @@ func _init():
 
 
 func _on_Pacman_pressed():
-	socket.put_packet("pacman".to_ascii())
 	print ("Empezando pacman...")
 	click = get_tree().change_scene(direccion)
 	

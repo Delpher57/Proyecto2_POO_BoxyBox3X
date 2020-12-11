@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Roaming at the Neon Maze.wav-f84e1d7e5d540d0dda5bb40405ffa2f3.sample"
+
+[deps]
+
+source_file="res://assets/Roaming at the Neon Maze.wav"
+dest_files=[ "res://.import/Roaming at the Neon Maze.wav-f84e1d7e5d540d0dda5bb40405ffa2f3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

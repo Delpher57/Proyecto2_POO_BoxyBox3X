@@ -13,15 +13,25 @@ func _init():
 
 func _process(_delta):
 	if(socket.get_available_packet_count() > 0):
-			var data = socket.get_packet().get_string_from_ascii()
-			if(data == "quit"):
+			var data = socket.get_var()
+			
+			if(data[0] == "quit"):
 				quit()
-			if (data == "izquierda"):
-				get_node("control/TileMap").pruebamov("accion")
+			if (data[0] == "pacman"):
+				get_node("control/TileMap").personaje = data[1]
+				get_node("control/TileMap").hay_fondo = true
+				get_node("control/TileMap").fondo = data[2]
+			if (data[0] == "moverse"):
+				mover_sprite(data)
 			else:
-				print("recibido en pantalla: " + data)
+				print("recibido en pantalla: " + data[0])
 				
 
+func mover_sprite(direccion):
+
+	print ("la direccion nueva es: ",direccion[1], "," , direccion[2])
+	get_node("control/TileMap").mover(direccion[1],direccion[2],get_node("control/TileMap").personaje)
+	
 
 func quit():
 	socket.close()        
