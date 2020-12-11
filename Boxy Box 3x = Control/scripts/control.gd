@@ -1,7 +1,24 @@
 extends Node2D
 
+#4242 es el adress para hablarle a la consola
+#5252 es el adress para hablarle a la pantalla
+var socket
 
 
+
+func _init():
+  socket = PacketPeerUDP.new()
+  socket.set_dest_address("127.0.0.1",5252)
+
+
+
+
+
+func _on_Pacman_pressed():
+	socket.put_packet("pacman".to_ascii())
+	print ("Empezando pacman...")
+
+	
 var botones = []
 
 func _ready():
@@ -10,7 +27,6 @@ func _ready():
 		boton.connect("presionado",self,"boton_presionado")
 		boton.connect("soltado",self,"boton_soltado")
 		
-		set_network_master(get_tree().get_network_unique_id())
 	pass
 
 
@@ -27,10 +43,9 @@ func add_botones():
 
 func boton_presionado(accion):
 	print("Se ha presionado el boton > ",accion)
-	rpc_unreliable("boton_presionado_network", accion)
+	socket.put_packet(accion.to_ascii())
 	pass
 
 func boton_soltado(accion):
 	print("Se ha soltado el boton > ",accion)
-	rpc_unreliable("boton_soltado_network", accion)
 	pass

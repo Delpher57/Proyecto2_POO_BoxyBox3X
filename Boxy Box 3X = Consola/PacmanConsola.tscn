@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://PacmanServer.gd" type="Script" id=1]
+[ext_resource path="res://assets/pacman.jpg" type="Texture" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pacman" type="Sprite" parent="."]
+position = Vector2( 517.563, 298.414 )
+scale = Vector2( 0.619617, 0.597826 )
+texture = ExtResource( 2 )
