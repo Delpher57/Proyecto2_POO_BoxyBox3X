@@ -12,13 +12,13 @@
 script = ExtResource( 6 )
 
 [node name="fondo" type="Sprite" parent="."]
-position = Vector2( 45.367, -0.786711 )
-scale = Vector2( 4.86853, 2.90209 )
+position = Vector2( 43.4258, 0.669194 )
+scale = Vector2( 5.59648, 2.99308 )
 texture = ExtResource( 3 )
 
-[node name="borde" type="Sprite" parent="fondo"]
-position = Vector2( -0.017956, 0.783136 )
-scale = Vector2( 1.0303, 0.996235 )
+[node name="borde" type="Sprite" parent="."]
+position = Vector2( 44.5721, 3.00223 )
+scale = Vector2( 5.28365, 2.5843 )
 texture = ExtResource( 4 )
 
 [node name="abajo" parent="." instance=ExtResource( 7 )]
@@ -26,6 +26,7 @@ margin_left = 0.52742
 margin_top = 9.21657
 margin_right = 30.5274
 margin_bottom = 39.2166
+action_mode = 0
 accion = "abajo"
 
 [node name="Sprite" parent="abajo" index="0"]
@@ -70,9 +71,9 @@ margin_bottom = 18.0
 accion = "accion"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 45.338, 1.57137 )
+position = Vector2( 44.6118, 3.08673 )
 current = true
-zoom = Vector2( 0.15, 0.15 )
+zoom = Vector2( 0.27, 0.27 )
 
 [editable path="abajo"]
 

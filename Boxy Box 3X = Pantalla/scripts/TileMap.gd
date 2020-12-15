@@ -7,6 +7,7 @@ var y = 25
 
 var hay_fondo = false
 var fondo
+signal colision
 
 
 #prueba para dibujar a pacman
@@ -24,8 +25,10 @@ var temporal5x5 = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	guardar5x5(25,25)
-	limpiar_pantalla()
+	if hay_fondo == true:
+		imprimir_completo()
+	else:
+		limpiar_pantalla()
 	pass # Replace with function body.
 
 
@@ -52,24 +55,22 @@ func dibujar5x5 (matriz,x1,y1):
 		tempx = x1
 
 
-#guardamos el estado de un area de 5x5
-func guardar5x5 (x1,y1):
-	print ("guardando area")
+#limpiamos un area de 5x5
+func limpiar5x5 (x1,y1):
+	print ("imprimiendo sprite")
 	
 	var tempx = x1
 	var tempy = y1
-	var index = 0
 	for i in 5:
 		for j in 5:
-			temporal5x5[index][1] = get_cell(tempx,tempy)
+			set_cell(tempx,tempy,4,false,false)
 			tempx += 1
-			index += 1
 
 		tempy += 1
 		tempx = x1
 
 
-
+#limpiamos la pantalla
 func limpiar_pantalla():
 	for i in 51:
 		for j in 51:
@@ -85,12 +86,21 @@ func imprimir_completo():
 
 #movemos un sprite de 5x5
 func mover(x1,y1,matriz):
-	if hay_fondo == true:
-		imprimir_completo()
-	else:
-		limpiar_pantalla()
+	
+	
+	if get_cell(x1,y1) == 6 or get_cell(x1,y1+4) == 6 or get_cell(x1+4,y1+4) == 6 or get_cell(x1+4,y1) == 6:
+		emit_signal("colision")
+		return
+	limpiar5x5(x,y)
 	dibujar5x5(matriz,x1,y1)
+	x = x1
+	y = y1
 	pass
 
-func send_color(x1,y1):
-	return get_cell(x1,y1)
+#retornamos array con cierto color
+func get_colores(id):
+	var tiles = get_used_cells_by_id(id)
+	return tiles
+	
+
+
