@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="Boxy Box 3X = Pantalla"
 run/main_scene="res://scenes/lobby/lobby.tscn"
-config/icon="res://icon.png"
+config/icon="res://Assets/icon.jpg"
 
 [display]
 

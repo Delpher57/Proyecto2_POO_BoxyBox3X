@@ -3,7 +3,7 @@ extends Button
 #4242 es el adress para hablarle a la consola
 #5252 es el adress para hablarle a la pantalla
 var socket
-export var direccion = "res://PacmanConsola.tscn"
+var juego = preload ("res://PacmanConsola.tscn")
 var click
 
 func _ready():
@@ -23,5 +23,6 @@ func _init():
 
 func _on_Pacman_pressed():
 	print ("Empezando pacman...")
-	click = get_tree().change_scene(direccion)
+	var juegopacman = juego.instance()
+	get_parent().add_child(juegopacman)
 	

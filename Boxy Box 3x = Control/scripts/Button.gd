@@ -36,7 +36,7 @@ func _process(_delta):
 		if waiter == false:
 			waiter = true
 			emit_signal("presionado",accion)
-			yield(get_tree().create_timer(0.05), "timeout")
+			yield(get_tree().create_timer(0.11), "timeout")
 			waiter = false
 		
 		pass

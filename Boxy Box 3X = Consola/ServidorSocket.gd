@@ -1,8 +1,11 @@
 extends Control
 
+
 #puerto 4242 es la consola
 #puerto 5252 es la pantalla
 var socket
+var socketpantalla
+
 
 func _init():
 	socket = PacketPeerUDP.new()
@@ -12,17 +15,12 @@ func _init():
 	else:
 		print("Listening on port 4242 on localhost")
 
-
-func _process(delta):
-	if(socket.get_available_packet_count() > 0):
-			var data = socket.get_packet().get_string_from_ascii()
-			if(data == "quit"):
-				quit()
-			else:
-				print("Data received: " + data)
-
+	
+	socketpantalla = PacketPeerUDP.new()
+	socketpantalla.set_dest_address("127.0.0.1",5252)
 
 func quit():
-	socket.close()        
+	#socket.close()      
+	#socketpantalla.close()  
 	print("Exiting application")    
 	queue_free()

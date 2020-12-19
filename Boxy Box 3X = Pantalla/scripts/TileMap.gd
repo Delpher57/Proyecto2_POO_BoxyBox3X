@@ -25,21 +25,21 @@ var temporal5x5 = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
+
+
+
+func inicializar():
 	if hay_fondo == true:
 		imprimir_completo()
 	else:
 		limpiar_pantalla()
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 
 
 
 # funcion para imprimir un sprite de 5x5, un sprite es una matriz
 # se reciben de parametros la matriz y las coordenadas
 func dibujar5x5 (matriz,x1,y1):
-	print ("imprimiendo sprite")
 	
 	var tempx = x1
 	var tempy = y1
@@ -57,7 +57,6 @@ func dibujar5x5 (matriz,x1,y1):
 
 #limpiamos un area de 5x5
 func limpiar5x5 (x1,y1):
-	print ("imprimiendo sprite")
 	
 	var tempx = x1
 	var tempy = y1
@@ -83,12 +82,23 @@ func imprimir_completo():
 		for j in 51:
 			set_cell(i,j,fondo[i][j],false,false)
 			
+func get_colision(x1,y1,id):
+	var tempx = x1
+	var tempy = y1
+	for i in 5:
+		for j in 5:
+			if get_cell(tempx,tempy) == id:
+				return true
+			tempx += 1
+
+		tempy += 1
+		tempx = x1
+	return false
+
 
 #movemos un sprite de 5x5
-func mover(x1,y1,matriz):
-	
-	
-	if get_cell(x1,y1) == 6 or get_cell(x1,y1+4) == 6 or get_cell(x1+4,y1+4) == 6 or get_cell(x1+4,y1) == 6:
+func mover(x1,y1,matriz,colision_id):	
+	if get_colision(x1,y1,colision_id):
 		emit_signal("colision")
 		return
 	limpiar5x5(x,y)
@@ -101,6 +111,8 @@ func mover(x1,y1,matriz):
 func get_colores(id):
 	var tiles = get_used_cells_by_id(id)
 	return tiles
-	
+
+
+
 
 

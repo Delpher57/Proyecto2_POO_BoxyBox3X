@@ -28,21 +28,36 @@ func _process(_delta):
 				get_node("control/TileMap").personaje = data[1]
 				get_node("control/TileMap").hay_fondo = true
 				get_node("control/TileMap").fondo = data[2]
-				get_node("control/TileMap").imprimir_completo()
+				get_node("control/TileMap").inicializar()
+
 			elif (data[0] == "moverse"):
 				mover_sprite(data)
+			elif (data[0] == "set_fondo"):
+				get_node("control/TileMap").hay_fondo = true
+				get_node("control/TileMap").fondo = data[1]
+				get_node("control/TileMap").inicializar()
 			else:
 				print("recibido en pantalla: " + data[0])
 				
+
+func set_fondo(fondo):
+	get_node("control/TileMap").hay_fondo = true
+	get_node("control/TileMap").fondo = fondo
+	get_node("control/TileMap").imprimir_completo()
+
 
 func avisar_colision():
 	socketconsola.put_var(["colision"])
 
 func mover_sprite(direccion):
-	get_node("control/TileMap").mover(direccion[1],direccion[2],get_node("control/TileMap").personaje)
+	get_node("control/TileMap").mover(direccion[1],direccion[2],get_node("control/TileMap").personaje,direccion[4])
+	
+	#bolitas recogibles
 	var points = get_node("control/TileMap").get_colores(direccion[3])
 	socketconsola.put_var(["puntos",points])
-	
+
+
+
 
 func quit():
 	socket.close()        
