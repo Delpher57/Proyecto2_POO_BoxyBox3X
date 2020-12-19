@@ -143,7 +143,6 @@ func _process(_delta):
 
 			if(data[0] == "quit"):
 				socketpantalla.put_var(["set_fondo",get_parent().default])
-				yield(get_tree().create_timer(2), "timeout")
 				quit()
 			
 			#recibir confirmacion de movimiento

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://SpaceInConsola.gd" type="Script" id=1]
+[ext_resource path="res://assets/spacein.jpeg" type="Texture" id=2]
+[ext_resource path="res://assets/Gazing Upon the Universe.wav" type="AudioStream" id=3]
+
+[node name="SpaceInConsola" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spacein" type="Sprite" parent="."]
+position = Vector2( -1.27869, 36.0012 )
+scale = Vector2( 0.864004, 0.740914 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true

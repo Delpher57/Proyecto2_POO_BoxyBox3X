@@ -27,6 +27,14 @@ func _process(_delta):
 			elif (data[0] == "pacman"):
 				get_node("control/TileMap").personaje = data[1]
 				get_node("control/TileMap").hay_fondo = true
+				get_node("control/TileMap").limpiar_con_fondo = false
+				get_node("control/TileMap").fondo = data[2]
+				get_node("control/TileMap").inicializar()
+			
+			elif (data[0] == "frogger"):
+				get_node("control/TileMap").personaje = data[1]
+				get_node("control/TileMap").hay_fondo = true
+				get_node("control/TileMap").limpiar_con_fondo = true
 				get_node("control/TileMap").fondo = data[2]
 				get_node("control/TileMap").inicializar()
 

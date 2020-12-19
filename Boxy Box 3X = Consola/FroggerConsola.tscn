@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/Froggercover.png" type="Texture" id=1]
+[ext_resource path="res://assets/Roaming at the Neon Maze.wav" type="AudioStream" id=2]
+[ext_resource path="res://FroggerConsola.gd" type="Script" id=3]
+
+[node name="FroggerConsola" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+
+[node name="Froggercover" type="Sprite" parent="."]
+position = Vector2( 324.475, 212.365 )
+scale = Vector2( 2.33188, 1.27874 )
+texture = ExtResource( 1 )

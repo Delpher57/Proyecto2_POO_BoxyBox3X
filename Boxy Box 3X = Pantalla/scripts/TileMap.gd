@@ -6,6 +6,7 @@ var x = 25
 var y = 25
 
 var hay_fondo = false
+var limpiar_con_fondo = false
 var fondo
 signal colision
 
@@ -101,7 +102,10 @@ func mover(x1,y1,matriz,colision_id):
 	if get_colision(x1,y1,colision_id):
 		emit_signal("colision")
 		return
-	limpiar5x5(x,y)
+	if limpiar_con_fondo == false:
+		limpiar5x5(x,y)
+	else:
+		imprimir_completo()
 	dibujar5x5(matriz,x1,y1)
 	x = x1
 	y = y1
