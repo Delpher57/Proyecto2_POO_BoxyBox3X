@@ -21,6 +21,12 @@ var frog = [
 var x_car = 1
 var y_car = 17
 var direccion = 0 # 0 derecha / 1 izquierda
+
+var x_car2 = 20
+var y_car2 = 40
+var direccion2 = 0 # 0 derecha / 1 izquierda
+
+
 var carro = [
 			[1,8],[1,8],[1,6],[0,0],[0,0],
 			[1,6],[1,6],[1,6],[1,6],[0,0],
@@ -47,6 +53,7 @@ func _process(_delta):
 	if waiter == false:
 		waiter = true
 		mover_carro()
+		mover_carro2()
 		#print("a")
 		yield(get_tree().create_timer(0.12), "timeout")
 		waiter = false
@@ -87,6 +94,23 @@ func mover_carro():
 		if x_car == 1:
 			direccion = 0
 		socketpantalla.put_var(["moverse",x_car,y_car,11,6,1,xt,yt])
+
+
+func mover_carro2():
+	var xt = x_car2
+	var yt = y_car2
+	if direccion2 == 0:
+		x_car2+=1
+		if x_car2 == 46:
+			direccion2 = 1
+		socketpantalla.put_var(["moverse",x_car2,y_car2,11,6,1,xt,yt])
+	elif direccion2 == 1:
+		x_car2 -=1
+		if x_car2 == 1:
+			direccion2 = 0
+		socketpantalla.put_var(["moverse",x_car2,y_car2,11,6,1,xt,yt])
+
+
 
 func mover_personaje(dir):
 	var xt = x
