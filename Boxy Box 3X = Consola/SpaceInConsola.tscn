@@ -13,7 +13,7 @@ __meta__ = {
 }
 
 [node name="spacein" type="Sprite" parent="."]
-position = Vector2( -1.27869, 36.0012 )
+position = Vector2( 4.42132, 43.6012 )
 scale = Vector2( 0.864004, 0.740914 )
 texture = ExtResource( 2 )
 centered = false

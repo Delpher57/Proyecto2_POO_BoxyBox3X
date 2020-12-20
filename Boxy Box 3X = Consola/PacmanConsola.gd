@@ -134,7 +134,7 @@ var win = [
 func _ready():
 	_init()
 	socketpantalla.put_var(["pacman",pacm,mapbolas])
-	socketpantalla.put_var(["moverse",x,y,11,6])
+	socketpantalla.put_var(["moverse",x,y,11,6,0,x,y])
 
 
 func _process(_delta):
@@ -143,6 +143,8 @@ func _process(_delta):
 
 			if(data[0] == "quit"):
 				socketpantalla.put_var(["set_fondo",get_parent().default])
+				yield(get_tree().create_timer(0.12), "timeout")
+				
 				quit()
 			
 			#recibir confirmacion de movimiento
@@ -170,6 +172,9 @@ func _process(_delta):
 
 
 func mover_personaje(dir):
+	var xt = x
+	var yt = y
+	
 	if dir ==1:
 		lastmove_x = x
 		lastmove_y = y
@@ -188,12 +193,12 @@ func mover_personaje(dir):
 		x -= 1
 	else:
 		return
-	socketpantalla.put_var(["moverse",x,y,11,6]) #11 color de bolas y 6 de colision
+	socketpantalla.put_var(["moverse",x,y,11,6,0,xt,yt]) #11 color de bolas y 6 de colision
 
 
 func arreglar_pos():
 	x = lastmove_x
 	y = lastmove_y
-	socketpantalla.put_var(["moverse",x,y,11,6])
+	socketpantalla.put_var(["moverse",x,y,11,6,0,x,y])
 	pass
 

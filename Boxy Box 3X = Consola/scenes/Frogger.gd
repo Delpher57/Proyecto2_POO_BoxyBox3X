@@ -7,7 +7,6 @@ var juego = preload ("res://FroggerConsola.tscn")
 var click
 
 func _ready():
-	print ("consola")
 	_init()
 
 
@@ -23,6 +22,6 @@ func _init():
 
 func _on_Pacman_pressed():
 	print ("Empezando frogger...")
-	var spaceIngame = juego.instance()
-	get_parent().add_child(spaceIngame)
+	var froggergame = juego.instance()
+	get_parent().add_child(froggergame)
 	

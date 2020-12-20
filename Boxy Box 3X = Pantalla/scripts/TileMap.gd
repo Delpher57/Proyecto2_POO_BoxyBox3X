@@ -8,12 +8,13 @@ var y = 25
 var hay_fondo = false
 var limpiar_con_fondo = false
 var fondo
+
 signal colision
+signal colision2
 
 
-#prueba para dibujar a pacman
 #los sub arrays significan: 1 si se pinta, 0 si no, y luego el color
-var personaje
+var personaje = []
 
 # la usamos para guardar el estado de la pantalla
 var temporal5x5 = [
@@ -41,7 +42,6 @@ func inicializar():
 # funcion para imprimir un sprite de 5x5, un sprite es una matriz
 # se reciben de parametros la matriz y las coordenadas
 func dibujar5x5 (matriz,x1,y1):
-	
 	var tempx = x1
 	var tempy = y1
 	var index = 0
@@ -78,11 +78,22 @@ func limpiar_pantalla():
 
 #imprimimos una matriz de 51x51 en toda la pantalla
 func imprimir_completo():
-	
 	for i in 51:
 		for j in 51:
 			set_cell(i,j,fondo[i][j],false,false)
-			
+
+#imprimimos una parte del fondo especifica 5x5
+func limpiar_especifico5x5(x1,y1):
+	var tempx = x1
+	var tempy = y1
+	for i in 5:
+		for j in 5:
+			set_cell(tempx,tempy,fondo[tempx][tempy],false,false)
+			tempx += 1
+
+		tempy += 1
+		tempx = x1
+
 func get_colision(x1,y1,id):
 	var tempx = x1
 	var tempy = y1
@@ -97,18 +108,45 @@ func get_colision(x1,y1,id):
 	return false
 
 
-#movemos un sprite de 5x5
-func mover(x1,y1,matriz,colision_id):	
-	if get_colision(x1,y1,colision_id):
-		emit_signal("colision")
+func guardar5x5(x1,y1):
+	var tempx = x1
+	var tempy = y1
+	var index = 0
+	for i in 5:
+		for j in 5:
+			temporal5x5[index][0] = get_cell(tempx,tempy)
+			tempx += 1
+			index += 1
+
+		tempy += 1
+		tempx = x1
+
+
+func mover1x1(x1,y1,color,color_colision,xa,ya):
+	if get_cell(x1,y1) == color_colision:
+		emit_signal("colision2",y1)
 		return
+	set_cell(xa,ya,fondo[xa][ya])
+	set_cell(x1,y1,color)
+	
+	
+
+#movemos un sprite de 5x5
+func mover(x1,y1,matriz,colision_id,hacercoli,xa,ya):
+	
+	if hacercoli == true:
+		if get_colision(x1,y1,colision_id):
+			emit_signal("colision")
+			limpiar_especifico5x5(xa,ya)
+			return
 	if limpiar_con_fondo == false:
-		limpiar5x5(x,y)
+		limpiar5x5(xa,ya)
 	else:
-		imprimir_completo()
+		pass
+		limpiar_especifico5x5(xa,ya)
+		#imprimir_completo()
+		
 	dibujar5x5(matriz,x1,y1)
-	x = x1
-	y = y1
 	pass
 
 #retornamos array con cierto color
