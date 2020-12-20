@@ -66,8 +66,7 @@ func _ready():
 func _process(_delta):
 	#revisamos si los aliens siguen vivos
 	if vivo1 == false and vivo2 == false and vivo3 == false:
-		socketpantalla.put_var(["set_fondo",get_parent().default])
-		quit()
+		exit()
 	
 	if waiter == false:
 		waiter = true
@@ -82,9 +81,7 @@ func _process(_delta):
 			var data = socket.get_var()
 
 			if(data[0] == "quit"):
-				socketpantalla.put_var(["set_fondo",get_parent().default])
-				yield(get_tree().create_timer(2), "timeout")
-				quit()
+				exit()
 			
 			#recibir confirmacion de movimiento
 			if (data[0] == "colision"):
@@ -204,3 +201,7 @@ func arreglar_pos():
 	socketpantalla.put_var(["moverse",x,y,11,6,0,x,y])
 	pass
 
+func exit():
+	socketpantalla.put_var(["set_fondo",get_parent().default])
+	yield(get_tree().create_timer(0.12), "timeout")
+	quit()

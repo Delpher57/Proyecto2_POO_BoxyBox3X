@@ -42,8 +42,7 @@ func _ready():
 func _process(_delta):
 	#revisamos si ya llegamos a la meta
 	if x <= 30 and x >= 23 and y <= 4 and y <= 1:
-		socketpantalla.put_var(["set_fondo",get_parent().default])
-		quit()
+		exit()
 	
 	if waiter == false:
 		waiter = true
@@ -120,3 +119,7 @@ func arreglar_pos():
 	socketpantalla.put_var(["moverse",x,y,11,6,0,x,y])
 	pass
 
+func exit():
+	socketpantalla.put_var(["set_fondo",get_parent().default])
+	yield(get_tree().create_timer(0.12), "timeout")
+	quit()
